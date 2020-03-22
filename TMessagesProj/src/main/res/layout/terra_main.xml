@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="75dp"
+            android:background="#E7E7E7"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/terraMainButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/terra_star"
+                android:text="Terra" />
+
+            <ImageButton
+                android:id="@+id/terraMessagesButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="43dp"
+                android:src="@drawable/terra_message"
+                android:text="Messages" />
+
+            <ImageButton
+                android:id="@+id/terraTelegramButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="43dp"
+                android:src="@drawable/terra_telegram"
+                android:text="Telegram" />
+
+            <ImageButton
+                android:id="@+id/terraPhotoButton"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="43dp"
+                android:src="@drawable/terra_search"
+                android:text="@string/Search" />
+        </TableRow>
+
+    </RelativeLayout>
+</RelativeLayout>
