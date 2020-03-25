@@ -280,7 +280,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     public PullForegroundDrawable pullForegroundDrawable;
     private RecyclerAnimationScrollHelper scrollHelper;
 
-    private class ContentView extends SizeNotifierFrameLayout {
+    protected class ContentView extends SizeNotifierFrameLayout {
 
         private int inputFieldHeight;
 
@@ -1400,16 +1400,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         listView.setVerticalScrollbarPosition(LocaleController.isRTL ? RecyclerListView.SCROLLBAR_POSITION_LEFT : RecyclerListView.SCROLLBAR_POSITION_RIGHT);
         contentView.addView(listView, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
 
-        LayoutInflater inflater = LayoutInflater.from(context);
-        terraButtonsLayout = (RelativeLayout) inflater.inflate(R.layout.terra_main, null, false);
-        contentView.addView(terraButtonsLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
-        final ImageButton terraMainButton = contentView.findViewById(R.id.terraMainButton);
-        terraMainButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("---------");
-            }
-        });
+        createTerraPanel(context, contentView);
 
         listView.setOnItemClickListener((view, position) -> onItemClick(view, position, dialogsAdapter));
         listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListenerExtended() {
@@ -2027,6 +2018,33 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         scrollHelper = new RecyclerAnimationScrollHelper(listView, layoutManager);
 
         return fragmentView;
+    }
+
+    /**
+     * Crate Terra buttons panel
+     */
+    protected void createTerraPanel(Context context, ContentView contentView) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        terraButtonsLayout = (RelativeLayout) inflater.inflate(R.layout.terra_main, null, false);
+        contentView.addView(terraButtonsLayout, LayoutHelper.createFrame(LayoutHelper.MATCH_PARENT, LayoutHelper.MATCH_PARENT));
+        final ImageButton terraMainButton = contentView.findViewById(R.id.terraMainButton);
+        final ImageButton terraTelegramButton = contentView.findViewById(R.id.terraTelegramButton);
+
+        LaunchActivity launchActivity = (LaunchActivity) getParentActivity();
+        terraMainButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogsActivity terraChatsActivity = new TerraDialogsActivity(arguments);
+                launchActivity.presentFragment(terraChatsActivity, false, true);
+            }
+        });
+        terraTelegramButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogsActivity terraChatsActivity = new DialogsActivity(arguments);
+                launchActivity.presentFragment(terraChatsActivity, false, true);
+            }
+        });
     }
 
     @Override
