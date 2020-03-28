@@ -71,6 +71,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public ArrayList<TLRPC.Dialog> dialogsChannelsOnly = new ArrayList<>();
     public ArrayList<TLRPC.Dialog> dialogsUsersOnly = new ArrayList<>();
     public ArrayList<TLRPC.Dialog> dialogsGroupsOnly = new ArrayList<>();
+    public ArrayList<TLRPC.Dialog> terraDialogs = new ArrayList<>();
     public int unreadUnmutedDialogs;
     public ConcurrentHashMap<Long, Integer> dialogs_read_inbox_max = new ConcurrentHashMap<>(100, 1.0f, 2);
     public ConcurrentHashMap<Long, Integer> dialogs_read_outbox_max = new ConcurrentHashMap<>(100, 1.0f, 2);
@@ -1122,6 +1123,7 @@ public class MessagesController extends BaseController implements NotificationCe
         dialogsChannelsOnly.clear();
         dialogsGroupsOnly.clear();
         dialogsUsersOnly.clear();
+        terraDialogs.clear();
         dialogMessagesByIds.clear();
         dialogMessagesByRandomIds.clear();
         channelAdmins.clear();
@@ -3005,6 +3007,7 @@ public class MessagesController extends BaseController implements NotificationCe
         dialogsChannelsOnly.remove(dialog);
         dialogsGroupsOnly.remove(dialog);
         dialogsUsersOnly.remove(dialog);
+        terraDialogs.remove(dialog);
         dialogsForward.remove(dialog);
         dialogs_dict.remove(did);
 
@@ -11107,6 +11110,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 dialogsChannelsOnly.remove(dialog);
                 dialogsGroupsOnly.remove(dialog);
                 dialogsUsersOnly.remove(dialog);
+                terraDialogs.remove(dialog);
                 dialogsForward.remove(dialog);
                 dialogs_dict.remove(dialog.id);
                 dialogs_read_inbox_max.remove(dialog.id);
@@ -11258,6 +11262,7 @@ public class MessagesController extends BaseController implements NotificationCe
         dialogsChannelsOnly.clear();
         dialogsGroupsOnly.clear();
         dialogsUsersOnly.clear();
+        terraDialogs.clear();
         dialogsForward.clear();
         for (int a = 0; a < dialogsByFolder.size(); a++) {
             ArrayList<TLRPC.Dialog> arrayList = dialogsByFolder.valueAt(a);
